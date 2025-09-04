@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Faculty - AI Timetable Generator{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>
+                <i class="fas fa-edit me-2"></i>Edit Faculty
+            </h1>
+            <a href="{{ url_for('faculty') }}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left me-2"></i>Back to Faculty
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Edit Faculty Details</h5>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Full Name *</label>
+                        <input type="text" class="form-control" id="name" name="name" required 
+                               value="{{ faculty.name }}" placeholder="e.g., Dr. John Smith">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email Address *</label>
+                        <input type="email" class="form-control" id="email" name="email" required 
+                               value="{{ faculty.email }}" placeholder="e.g., john.smith@university.edu">
+                    </div>
+                    <div class="mb-3">
+                        <label for="department" class="form-label">Department *</label>
+                        <input type="text" class="form-control" id="department" name="department" required 
+                               value="{{ faculty.department }}" placeholder="e.g., Computer Science">
+                    </div>
+                    <div class="mb-3">
+                        <label for="subjects" class="form-label">Subjects/Courses *</label>
+                        <input type="text" class="form-control" id="subjects" name="subjects" required 
+                               value="{{ faculty.subjects }}" placeholder="e.g., CS101, CS102, CS201">
+                        <div class="form-text">Enter course codes separated by commas</div>
+                        {% if courses %}
+                            <div class="mt-2">
+                                <small class="text-muted">Available courses:</small><br>
+                                {% for course in courses %}
+                                    <span class="badge bg-light text-dark me-1 mb-1">{{ course.code }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <a href="{{ url_for('faculty') }}" class="btn btn-secondary me-2">Cancel</a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save me-2"></i>Update Faculty
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
