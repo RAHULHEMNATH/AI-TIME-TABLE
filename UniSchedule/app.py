@@ -20,6 +20,21 @@ def home():
 def data():
     return {"message": "Hello from Flask!"}
 
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "✅ AI Timetable Generator is Working! 🚀"
+
+@app.route('/<path:path>')
+def catch_all(path):
+    return f"Route not found: {path}", 404
+
+# Vercel handler
+def handler(request, response):
+    return app(request, response)
+
 # Set up logging
 logging.basicConfig(level=logging.DEBUG)
 
