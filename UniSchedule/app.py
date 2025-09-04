@@ -6,6 +6,10 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase
 from werkzeug.middleware.proxy_fix import ProxyFix
 
+# For Vercel deployment
+if __name__ == '__main__':
+    app.run(debug=True)
+
 # Set up logging
 logging.basicConfig(level=logging.DEBUG)
 
