@@ -9,6 +9,17 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 # For Vercel deployment
 if __name__ == '__main__':
     app.run(debug=True)
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return render_template('index.html')  # or your template
+
+@app.route('/api/data')
+def data():
+    return {"message": "Hello from Flask!"}
 
 # Set up logging
 logging.basicConfig(level=logging.DEBUG)
